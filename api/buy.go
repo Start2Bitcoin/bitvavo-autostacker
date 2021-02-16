@@ -50,7 +50,9 @@ func GetEurBalance() (balance float64, err error) {
 }
 
 func BuyBitcoin(eurAmount float64) (order bitvavo.Order, err error) {
-	return bv.PlaceOrder("BTC-EUR", "buy", "market", map[string]string{"amountQuote": fmt.Sprintf("%f", eurAmount)})
+	stringAmt := fmt.Sprintf("%f", eurAmount)
+	logrus.Info(stringAmt)
+	return bv.PlaceOrder("BTC-EUR", "buy", "market", map[string]string{"amountQuote": stringAmt})
 }
 
 func Handler(w http.ResponseWriter, r *http.Request) {
@@ -65,6 +67,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
 		return
 	}
+	logrus.Info(euros)
 	order, err := BuyBitcoin(euros)
 	if err != nil {
 		logrus.WithError(err).Error("Something went wrong buying bitcoin on bitvavo")
