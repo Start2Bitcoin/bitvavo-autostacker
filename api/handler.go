@@ -6,7 +6,7 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-func handler(w http.ResponseWriter, r *http.Request) {
+func Handler(w http.ResponseWriter, r *http.Request) {
 	euros, err := GetEurBalance()
 	if err != nil {
 		logrus.WithError(err).Error("Something went wrong fetching Bitvavo account balance")
