@@ -6,7 +6,7 @@ This software makes it easy to autostack bitcoin on the [Bitvavo](https://bitvav
 The software is completely self-hosted using Github, [Vercel](https://vercel.com) and [IFTTT](https://ifttt.com)
 
 # What does this do
-This app checks (by default) every 60 minutes if you have euro's available in your Bitvavo account.
+This app checks every day (or whenever you want) if you have euro's available in your Bitvavo account.
 If you don't nothing happens. If you do, the app uses every euro in your account to market buy Bitcoin.
 This way, you can setup a reccuring payment from your bank account. As soon as the money arrives at your Bitvavo account, Bitcoin
 will be bought with it. You will receive e-mail confirmations from Bitvavo notifying you that the buy has taken place.
