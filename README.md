@@ -3,7 +3,7 @@
 Ever since the unfortunate exit of [Bittr](https://getbittr.com/) people have been unable to stack sats in an automated way using a Dutch platform.
 
 This software makes it easy to autostack bitcoin on the [Bitvavo](https://bitvavo.com) platform.
-The software is completely self-hosted using Github and [Vercel](https://vercel.com)
+The software is completely self-hosted using Github, [Vercel](https://vercel.com) and [IFTTT](https://ifttt.com)
 
 # What does this do
 This app checks (by default) every 60 minutes if you have euro's available in your Bitvavo account.
@@ -31,8 +31,14 @@ All this is hosted for free (Vercel is a serverless platform).
     - In Vercel, add the environment variables `CONFIG_APIKEY` -> your Bitvavo API *key*
     - In Vercel, add the environment variables `CONFIG_APISECRET` -> your Bitvavo API *secret*
     - Deploy the Vercel app
-- In your own repository, update the `.github/workflows/workflow.yaml` file.
-- Replace `YOUR_VERCEL_URL` with the url of your app that you get from Vercel.
-- (Optional) Replace `60` with how often you want the app to check (in minutes) that you have euro's available in your Bitvavo account.
-- Commit and push the changes
-- Everything should work well. Make sure to have some euro's in your Bitvavo account to test it out, and maybe set the time period to 1 minute to test it out at first.
+- Now, every time someone visits the URL `https://bitvavo-autostacker.<yourname>.vercel.app/api/buy`, the app will check if it can buy bitcoin, and then actually buy it if it can.
+- Now we only need to make sure this URL is triggered from time to time. You need to create an [IFTTT](https://ifttt.com) account first.
+- Then, Click `Create`
+    - Search for "Time" and add the `Date & Time` module as the first step.
+    - Create a trigger for "every day at" and specify a time you want it to trigger. Maybe make this time a little bit later than the time your outgoing transfer
+    takes place from your bank account. If your bank transfer is not instant, they are usually processed between 09:00 and 10:00 AM, so maybe set the time to 10:00 AM.
+    - For the second stage, search for `Webhooks`
+    - For url, fill in the url of your Vercel app: eg. `https://bitvavo-autostacker.<yourname>.vercel.app/api/buy`
+    - Select `application/json` for content type
+    - Click `Create` , `Continue`, and then `Finish`
+- Everything should work well. Make sure to have some euro's in your Bitvavo account to test it out.
