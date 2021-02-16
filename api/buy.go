@@ -35,6 +35,7 @@ func init() {
 }
 
 func GetEurBalance() (balance float64, err error) {
+	fmt.Print(conf.ApiKey)
 	response, err := bv.Balance(map[string]string{"symbol": "EUR"})
 	if err != nil {
 		return 0, err
