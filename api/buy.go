@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 	"strconv"
+	"strings"
 
 	"github.com/kiwiidb/go-bitvavo-api"
 	"github.com/koding/multiconfig"
@@ -31,11 +32,12 @@ func init() {
 		AccessWindow: 60000,
 		WS:           bitvavo.Websocket{},
 	}
+	conf.ApiKey = strings.TrimSuffix(conf.ApiKey, "\n")
+	conf.ApiSecret = strings.TrimSuffix(conf.ApiSecret, "\n")
 
 }
 
 func GetEurBalance() (balance float64, err error) {
-	fmt.Print(conf.ApiKey)
 	response, err := bv.Balance(map[string]string{"symbol": "EUR"})
 	if err != nil {
 		return 0, err
