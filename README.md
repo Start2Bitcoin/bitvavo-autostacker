@@ -12,7 +12,7 @@ This way, you can setup a reccuring payment from your bank account. As soon as t
 will be bought with it. You will receive e-mail confirmations from Bitvavo notifying you that the buy has taken place.
 The app does not (at the moment) withdraw bitcoin to your personal wallet.
 
-The app should be hosted by Vercel, and we use a Github Actions Cron job to poll Bitvavo every x (60) minutes.
+The app should be hosted by Vercel, and we use [If This then That](https://ifttt.com) to poll the app every x amount of time.
 All this is hosted for free (Vercel is a serverless platform).
 
 # Step by step
