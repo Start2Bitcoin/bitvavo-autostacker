@@ -10,6 +10,7 @@ This app checks (by default) every 60 minutes if you have euro's available in yo
 If you don't nothing happens. If you do, the app uses every euro in your account to market buy Bitcoin.
 This way, you can setup a reccuring payment from your bank account. As soon as the money arrives at your Bitvavo account, Bitcoin
 will be bought with it. You will receive e-mail confirmations from Bitvavo notifying you that the buy has taken place.
+The app does not (at the moment) withdraw bitcoin to your personal wallet.
 
 The app should be hosted by Vercel, and we use a Github Actions Cron job to poll Bitvavo every x (60) minutes.
 All this is hosted for free (Vercel is a serverless platform).
