@@ -12,7 +12,7 @@ This way, you can setup a reccuring payment from your bank account. As soon as t
 will be bought with it. You will receive e-mail confirmations from Bitvavo notifying you that the buy has taken place.
 
 The app should be hosted by Vercel, and we use a Github Actions Cron job to poll Bitvavo every x (60) minutes.
-All this is hosted for free.
+All this is hosted for free (Vercel is a serverless platform).
 
 # Step by step
 
@@ -35,3 +35,4 @@ All this is hosted for free.
 - Replace `YOUR_VERCEL_URL` with the url of your app that you get from Vercel.
 - (Optional) Replace `60` with how often you want the app to check (in minutes) that you have euro's available in your Bitvavo account.
 - Commit and push the changes
+- Everything should work well. Make sure to have some euro's in your Bitvavo account to test it out, and maybe set the time period to 1 minute to test it out at first.
