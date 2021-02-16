@@ -51,7 +51,6 @@ func GetEurBalance() (balance float64, err error) {
 
 func BuyBitcoin(eurAmount float64) (order bitvavo.Order, err error) {
 	stringAmt := fmt.Sprintf("%.2f", eurAmount)
-	logrus.Info(stringAmt)
 	return bv.PlaceOrder("BTC-EUR", "buy", "market", map[string]string{"amountQuote": stringAmt})
 }
 
@@ -67,13 +66,12 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
 		return
 	}
-	logrus.Info(euros)
 	order, err := BuyBitcoin(euros)
 	if err != nil {
 		logrus.WithError(err).Error("Something went wrong buying bitcoin on bitvavo")
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
-	logrus.WithField("order", order.Amount).Info("Stacked some sats")
+	logrus.WithField("order", order).Info("Stacked some sats")
 	w.WriteHeader(http.StatusOK)
 }
