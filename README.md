@@ -34,3 +34,4 @@ All this is hosted for free.
 - In your own repository, update the `.github/workflows/workflow.yaml` file.
 - Replace `YOUR_VERCEL_URL` with the url of your app that you get from Vercel.
 - (Optional) Replace `60` with how often you want the app to check (in minutes) that you have euro's available in your Bitvavo account.
+- Commit and push the changes
