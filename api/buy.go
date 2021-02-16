@@ -2,6 +2,7 @@ package handler
 
 import (
 	"fmt"
+	"math"
 	"net/http"
 	"strconv"
 	"strings"
@@ -50,7 +51,7 @@ func GetEurBalance() (balance float64, err error) {
 }
 
 func BuyBitcoin(eurAmount float64) (order bitvavo.Order, err error) {
-	stringAmt := fmt.Sprintf("%f", eurAmount)
+	stringAmt := fmt.Sprintf("%f", math.Floor(eurAmount*100)/100)
 	logrus.Info(stringAmt)
 	return bv.PlaceOrder("BTC-EUR", "buy", "market", map[string]string{"amountQuote": stringAmt})
 }
