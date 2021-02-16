@@ -29,7 +29,7 @@ All this is hosted for free (Vercel is a serverless platform).
 - Create a new project on Vercel from this repository that you have just forked.
 - You will be prompted to add environment variables. Keep this window open.
 - Create an API key that can _View information_ and _Trade_, but *not* withdraw. (This is a safety measure. This software does not (yet) support withdrawals)
-    - In Vercel, add the environment variables `CONFIG_APIKEY` -> your Bitvavo API *key*
+    - In Vercel, add the environment variables `CONFIG_APIKEY` -> your Bitvavo API *key* (See below screenshot)
     - In Vercel, add the environment variables `CONFIG_APISECRET` -> your Bitvavo API *secret*
     - Deploy the Vercel app
 - Now, every time someone visits the URL `https://bitvavo-autostacker.<yourname>.vercel.app/api/buy`, the app will check if it can buy bitcoin, and then actually buy it if it can.
@@ -43,3 +43,4 @@ All this is hosted for free (Vercel is a serverless platform).
     - Select `application/json` for content type
     - Click `Create` , `Continue`, and then `Finish`
 - Everything should work well. Make sure to have some euro's in your Bitvavo account to test it out.
+![Put keys here](vercel.png "Vercel environment configuration")
