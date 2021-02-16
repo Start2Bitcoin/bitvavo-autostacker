@@ -24,6 +24,7 @@ var conf *Config
 func init() {
 	conf = &Config{}
 	multiconfig.New().MustLoad(conf)
+	//make vercel copy-paste foolproof
 	conf.ApiKey = strings.TrimSuffix(conf.ApiKey, "\n")
 	conf.ApiSecret = strings.TrimSuffix(conf.ApiSecret, "\n")
 	bv = bitvavo.Bitvavo{
