@@ -23,7 +23,7 @@ All this is hosted for free.
     - Deposit some euro's
     - Add 2FA to your account
 - Create a Github account
-- Fork this repository
+- Fork this repository (that's the button at the top right of this page)
 - Create a [Vercel](https://vercel.com) account. You can use your Github account to do this. Vercel is needed to host this software.
 - Create a new project on Vercel from this repository that you have just forked.
 - You will be prompted to add environment variables. Keep this window open.
