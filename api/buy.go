@@ -24,6 +24,8 @@ var conf *Config
 func init() {
 	conf = &Config{}
 	multiconfig.New().MustLoad(conf)
+	conf.ApiKey = strings.TrimSuffix(conf.ApiKey, "\n")
+	conf.ApiSecret = strings.TrimSuffix(conf.ApiSecret, "\n")
 	bv = bitvavo.Bitvavo{
 		ApiKey:       conf.ApiKey,
 		ApiSecret:    conf.ApiSecret,
@@ -32,8 +34,6 @@ func init() {
 		AccessWindow: 60000,
 		WS:           bitvavo.Websocket{},
 	}
-	conf.ApiKey = strings.TrimSuffix(conf.ApiKey, "\n")
-	conf.ApiSecret = strings.TrimSuffix(conf.ApiSecret, "\n")
 
 }
 
