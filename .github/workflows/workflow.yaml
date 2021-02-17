@@ -1,5 +1,7 @@
 name: Build Golang
-on: push
+on:
+  schedule:
+    - cron: '*/60 * * * *'
 jobs:
     run:
         env:
