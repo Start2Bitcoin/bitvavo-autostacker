@@ -18,4 +18,4 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v2
             - name: Run
-              sun: go run main.go
+              run: go run main.go
