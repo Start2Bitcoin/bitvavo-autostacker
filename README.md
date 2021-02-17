@@ -27,8 +27,8 @@ Be aware that Github Actions Cron Jobs are sometimes unreliable and may not trig
 - Fork this repository (that's the button at the top right of this page)
 - In your own version of this repository, go to Settings -> Secrets
 - On your Bitvavo account, create an API key that can _View information_ and _Trade_, but *not* withdraw. (This is a safety measure. This software does not (yet) support withdrawals)
-    - On Github, click `New repository secret`, add the environment secret `API_KEY` -> your Bitvavo API *key* 
-    - On Github, click `New repository secret`, add `API_SECRET` -> your Bitvavo API *secret*
+    - On Github, click `New repository secret`, add the environment secret with name: `API_KEY` and value -> your Bitvavo API *key* 
+    - On Github, click `New repository secret`, add with name: `API_SECRET` and value -> your Bitvavo API *secret*
 - Now, Github should run the `Action` every 60 minutes. If you want to check if it has run, check out the `Actions` tab of the repository. Be aware that it may take some time (longer than 60 minutes) to trigger for the first time, and that Github
 Actions is not completely reliable in scheduling jobs and may sometimes skip one. But since we check every hour this should not be a problem.
 - Make sure to have some euro's in your Bitvavo account to test it out.

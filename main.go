@@ -37,7 +37,7 @@ func main() {
 		return
 	}
 	if euros == 0 {
-		logrus.Info("No euros to buy coins")
+		logrus.Debug("No euros to buy coins")
 		return
 	}
 	order, err := BuyBitcoin(&bv, euros)
@@ -45,7 +45,7 @@ func main() {
 		logrus.WithError(err).Error("Something went wrong buying bitcoin on bitvavo")
 		return
 	}
-	logrus.WithField("order", order).Info("Stacked some sats")
+	logrus.WithField("order", order).Debug("Stacked some sats")
 }
 
 func GetEurBalance(bv *bitvavo.Bitvavo) (balance float64, err error) {
