@@ -9,7 +9,7 @@ The software is completely self-hosted using only Github!
 This app checks every hour (or whenever you want) if you have euro's available in your Bitvavo account.
 If you don't nothing happens. If you do, the app uses every euro in your account to market buy Bitcoin.
 This way, you can setup a reccuring payment from your bank account. As soon as the money arrives at your Bitvavo account, Bitcoin
-will be bought with it. You will receive e-mail confirmations from Bitvavo notifying you that the buy has taken place.
+will be bought with it. 
 The app does not (at the moment) withdraw bitcoin to your personal wallet.
 
 The app is hosted completely on Github, and uses Github Actions to check your Bitvavo account every x (default 60) minutes.
