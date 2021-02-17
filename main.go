@@ -1,8 +1,7 @@
-package handler
+package main
 
 import (
 	"fmt"
-	"net/http"
 	"strconv"
 	"strings"
 
@@ -18,16 +17,13 @@ type Config struct {
 	WsUrl     string `default:"wss://ws.bitvavo.com/v2/"`
 }
 
-var bv bitvavo.Bitvavo
-var conf *Config
-
-func init() {
-	conf = &Config{}
+func main() {
+	conf := &Config{}
 	multiconfig.New().MustLoad(conf)
-	//make vercel copy-paste foolproof
+	//make copy-paste foolproof
 	conf.ApiKey = strings.TrimSuffix(conf.ApiKey, "\n")
 	conf.ApiSecret = strings.TrimSuffix(conf.ApiSecret, "\n")
-	bv = bitvavo.Bitvavo{
+	bv := bitvavo.Bitvavo{
 		ApiKey:       conf.ApiKey,
 		ApiSecret:    conf.ApiSecret,
 		RestUrl:      conf.RestUrl,
@@ -35,10 +31,24 @@ func init() {
 		AccessWindow: 60000,
 		WS:           bitvavo.Websocket{},
 	}
-
+	euros, err := GetEurBalance(&bv)
+	if err != nil {
+		logrus.WithError(err).Error("Something went wrong fetching euro balance")
+		return
+	}
+	if euros == 0 {
+		logrus.Info("No euros to buy coins")
+		return
+	}
+	order, err := BuyBitcoin(&bv, euros)
+	if err != nil {
+		logrus.WithError(err).Error("Something went wrong buying bitcoin on bitvavo")
+		return
+	}
+	logrus.WithField("order", order).Info("Stacked some sats")
 }
 
-func GetEurBalance() (balance float64, err error) {
+func GetEurBalance(bv *bitvavo.Bitvavo) (balance float64, err error) {
 	response, err := bv.Balance(map[string]string{"symbol": "EUR"})
 	if err != nil {
 		return 0, err
@@ -49,29 +59,7 @@ func GetEurBalance() (balance float64, err error) {
 	return strconv.ParseFloat(response[0].Available, 32)
 }
 
-func BuyBitcoin(eurAmount float64) (order bitvavo.Order, err error) {
+func BuyBitcoin(bv *bitvavo.Bitvavo, eurAmount float64) (order bitvavo.Order, err error) {
 	stringAmt := fmt.Sprintf("%.2f", eurAmount)
 	return bv.PlaceOrder("BTC-EUR", "buy", "market", map[string]string{"amountQuote": stringAmt})
-}
-
-func Handler(w http.ResponseWriter, r *http.Request) {
-	euros, err := GetEurBalance()
-	if err != nil {
-		logrus.WithError(err).Error("Something went wrong fetching Bitvavo account balance")
-		w.WriteHeader(http.StatusInternalServerError)
-		return
-	}
-	if euros == 0 {
-		logrus.Info("No euros to buy coins")
-		w.WriteHeader(http.StatusOK)
-		return
-	}
-	order, err := BuyBitcoin(euros)
-	if err != nil {
-		logrus.WithError(err).Error("Something went wrong buying bitcoin on bitvavo")
-		w.WriteHeader(http.StatusInternalServerError)
-		return
-	}
-	logrus.WithField("order", order).Info("Stacked some sats")
-	w.WriteHeader(http.StatusOK)
 }
