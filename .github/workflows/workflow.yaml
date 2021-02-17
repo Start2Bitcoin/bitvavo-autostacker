@@ -11,7 +11,7 @@ jobs:
             platform: [ ubuntu-latest ]
         runs-on: ${{ matrix.platform }}
         steps:
-             name: Install Go
+            - name: Install Go
               uses: actions/setup-go@v1
               with:
                 go-version: ${{ matrix.go-version }}
