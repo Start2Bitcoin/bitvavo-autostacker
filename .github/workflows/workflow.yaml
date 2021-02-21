@@ -1,4 +1,4 @@
-name: Build Golang
+name: Buy btc on Bitvavo - enable this
 on:
   schedule:
     - cron: '*/60 * * * *'
