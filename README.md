@@ -25,6 +25,7 @@ Be aware that Github Actions Cron Jobs are sometimes unreliable and may not trig
     - Add 2FA to your account
 - Create a Github account
 - Fork this repository (that's the button at the top right of this page)
+- Go to Actions -> enable the Actions. Als enable the "scheduled action" called _Buy btc on Bitvavo - enable this_
 - In your own version of this repository, go to Settings -> Secrets
 - On your Bitvavo account, create an API key that can _View information_ and _Trade_, but *not* withdraw. (This is a safety measure. This software does not (yet) support withdrawals)
     - On Github, click `New repository secret`, add the environment secret with name: `API_KEY` and value -> your Bitvavo API *key* 
